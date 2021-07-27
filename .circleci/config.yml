@@ -39,7 +39,8 @@ jobs:
            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
            cd ${HOME}/project
-           ls 10
+           ls 
+           sleep 15
            docker load -i ${HOME}/project/webbb_${CIRCLE_SHA1}.tar.gz
            docker images
            sleep 15
