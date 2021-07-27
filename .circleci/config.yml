@@ -8,18 +8,10 @@ jobs:
          name: Install docker-compose and build images
          command: |
            docker build -t webbb:${CIRCLE_SHA1} .
-           docker images
-           sleep 15
            docker save -o ${HOME}/webbb:${CIRCLE_SHA1}.tar
-           cd ${HOME}/
-           ls
-           sleep 15
-         working_directory: ${HOME}/
   push:
     machine: true
     steps:
-     - attach_workspace:
-       at: ${HOME}/workspace
      - run:
          name: Installing gcloud sdk and push images gcr
          command: |
