@@ -8,6 +8,8 @@ jobs:
          name: Install docker-compose and build images
          command: |
            docker build -t webbb:${CIRCLE_SHA1} .
+           docker images
+           sleep 15
      - store_artifacts:
          path: /bin/final_build
   push:
