@@ -7,8 +7,8 @@ jobs:
      - run: 
          name: Install docker-compose and build images
          command: |
-           docker build -t webbb .
-           docker save webbb | gzip > webbb.tar.gz
+           docker build -t webbb:${CIRCLE_SHA1} .
+           docker save webbb:${CIRCLE_SHA1} | gzip > webbb_${CIRCLE_SHA1}.tar.gz
      - persist_to_workspace:
          root: ./
          paths:
@@ -39,8 +39,7 @@ jobs:
            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
            cd ${HOME}/project
-           docker load -i ${HOME}/project/webbb.tar.gz
-           docker tag webbb:latest/${GOOGLE_PROJECT_ID}/webbb:${CIRCLE_SHA1}
+           docker load -i ${HOME}/project/webbb_${CIRCLE_SHA1}.tar.gz
            gcloud docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/webb:${CIRCLE_SHA1}
 workflows:
   version: 2.1
