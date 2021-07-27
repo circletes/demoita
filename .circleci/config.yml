@@ -19,11 +19,13 @@ jobs:
            curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
            sudo apt-get update
            sudo apt-get install -y google-cloud-sdk
-           echo " { \"type\": \"service_account\", 
-           \"private_key_id\": \"$GCLOUD_PRIVATE_KEY_ID\", 
-           \"private_key\": \"$GCLOUD_SERVICE_KEY\", 
+           echo " { \"type\": \"service_account\",
+           \"project_id\": \$"GOOGLE_PROJECT_ID"\,
+           \"private_key_id\": \"$GCLOUD_PRIVATE_KEY_ID\",
+           \"private_key\": \"$GCLOUD_SERVICE_KEY\",
            \"client_email\": \"$GOOGLE_EMAIL\",
            \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",
+            \"client_id\": \"$CLIENT_ID\",
            \"token_uri\": \"https://oauth2.googleapis.com/token\", 
            \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\", 
            \"client_x509_cert_url\": \"$GCP_AUTH_X509\" } " >cred.json
