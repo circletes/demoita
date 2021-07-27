@@ -8,6 +8,10 @@ jobs:
          name: Install docker-compose and build images
          command: |
            docker build -t webbb:${CIRCLE_SHA1} .
+           docker save webbb:${CIRCLE_SHA1} | gzip > webbb_${CIRCLE_SHA1}.tar.gz
+           pwd
+           ls
+           sleep 15
      - persist_to_workspace:
          root: ./
          paths:
