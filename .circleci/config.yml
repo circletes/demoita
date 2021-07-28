@@ -43,7 +43,7 @@ jobs:
            docker tag webbb:latest eu.gcr.io/${GOOGLE_PROJECT_ID}/webbb:${CIRCLE_SHA1}
            docker images
            sleep 15
-           docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/webb:${CIRCLE_SHA1}
+           docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/eu.gcr.io/${GOOGLE_PROJECT_ID}:${CIRCLE_SHA1}
 workflows:
   version: 2.1
   build_and_push:
