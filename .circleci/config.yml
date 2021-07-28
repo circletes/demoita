@@ -40,7 +40,8 @@ jobs:
            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
            cd ${HOME}/project
            docker load -i ${HOME}/project/webbb_${CIRCLE_SHA1}.tar.gz
-           gcloud docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/webb:${CIRCLE_SHA1}
+           docker tag webbb:${CIRCLE_SHA1} eu.gcr.io/${GOOGLE_PROJECT_ID}/webbb:${CIRCLE_BUILD}
+           docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/webb:${CIRCLE_BUILD}
 workflows:
   version: 2.1
   build_and_push:
